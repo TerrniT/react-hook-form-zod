@@ -29,23 +29,23 @@ export default function SignUpPage() {
 
       <TextField
         id="email"
-        label="email"
+        label="Email"
         inputProps={register("email")}
         error={errors.email?.message as string}
       />
 
       <TextField
         id="password"
+        label="Password"
         type="password"
-        label="password"
         inputProps={register("password")}
         error={errors.password?.message as string}
       />
 
       <TextField
         id="confirmPassword"
-        type="password"
         label="Confirm Password"
+        type="password"
         inputProps={register("confirmPassword")}
         error={errors.confirmPassword?.message as string}
       />
