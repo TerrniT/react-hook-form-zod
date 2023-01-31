@@ -1,8 +1,10 @@
-import { useCallback } from "react";
-import { SingUpForm } from "@/src/components/SignUpForm/SignUpForm";
-import { SignUpFormValues } from "@/src/components/SignUpForm/type";
+import { useRef } from "react";
+import { SignUpForm } from "@/src/components/SignUpForm/SignUpForm";
+import { SignUpApi, SignUpFormValues } from "@/src/components/SignUpForm/type";
 
 export default function SignUpPage() {
+  const signupFormRef = useRef<SignUpApi>(null);
+
   const handleSubmit = async (data: SignUpFormValues) => {
     const response = await fetch("/api/sign-up", {
       method: "POST",
@@ -16,10 +18,14 @@ export default function SignUpPage() {
     });
 
     const jsonResponse = await response.json();
-    console.log("server response", jsonResponse);
+
+    if (!jsonResponse.success) {
+      signupFormRef.current?.setErrors(jsonResponse.errors);
+      return;
+    }
   };
 
   console.log("re-render signup");
 
-  return <SingUpForm onSubmitReady={handleSubmit} />;
+  return <SignUpForm ref={signupFormRef} onSubmitReady={handleSubmit} />;
 }

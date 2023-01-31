@@ -26,6 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         email: "email no available",
       },
     });
+    return;
   }
 
   await new Promise((resolve) => setTimeout(resolve, 1000));
