@@ -40,7 +40,7 @@ export const SignUpForm = forwardRef<SignUpApi, SignUpFormProps>(
 
     return (
       <form
-        className="flex flex-col gap-4 items-center justify-center h-screen"
+        className="flex form-control w-96 flex-col gap-2 py-8 px-14 bg-zinc-800 rounded-lg"
         onSubmit={handleSubmit(props.onSubmitReady)}
       >
         <div className="stat-title">Sign Up</div>
@@ -68,8 +68,24 @@ export const SignUpForm = forwardRef<SignUpApi, SignUpFormProps>(
           error={errors.confirmPassword?.message as string}
         />
 
-        <Button color="ghost" variant="outline" disabled={isSubmitting}>
+        <Button
+          className="mt-8"
+          color="ghost"
+          variant="outline"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Sending" : "Submit"}
+        </Button>
+
+        <Button
+          onClick={(e) => {
+            console.log(e);
+          }}
+          className="mt-8"
+          color="ghost"
+          variant="outline"
+        >
+          Login In
         </Button>
       </form>
     );

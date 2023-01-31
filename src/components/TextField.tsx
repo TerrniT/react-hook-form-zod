@@ -23,7 +23,7 @@ interface TextFieldProps {
 
 export const TextField = (props: TextFieldProps) => {
   return (
-    <div className="form-control w-full max-w-xs">
+    <div className="form-control ">
       <label htmlFor={props.id} className="label">
         <span className="label-text">{props.label}</span>
       </label>
@@ -31,12 +31,14 @@ export const TextField = (props: TextFieldProps) => {
         color={"ghost"}
         id={props.id}
         type={props.type ?? "text"}
-        className="rounded-lg p-1 ring-1 ring-zinc-500"
+        className="rounded-lg p-1 ring-1 w-full ring-zinc-500"
         {...(props.inputProps ?? {})}
       />
       {props.error ? (
-        <span className="label-text text-error">{props.error}</span>
-      ) : null}
+        <span className="text-error text-xs h-1 py-1">{props.error}</span>
+      ) : (
+        <span className="text-error text-xs h-1 py-1">{null}</span>
+      )}
     </div>
   );
 };
