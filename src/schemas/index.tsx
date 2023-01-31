@@ -1,4 +1,4 @@
-import * as z from "zod";
+import * as z from 'zod'
 
 export const SignupSchema = z
   .object({
@@ -8,10 +8,10 @@ export const SignupSchema = z
   })
   .refine(
     (form) => {
-      return form.confirmPassword === form.password;
+      return form.confirmPassword === form.password
     },
     {
-      message: "Passwords must match",
-      path: ["confirmPassword"],
+      message: 'Passwords must match',
+      path: ['confirmPassword'],
     }
-  );
+  )
