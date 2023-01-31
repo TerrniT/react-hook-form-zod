@@ -18,6 +18,7 @@ export default function SignUpPage() {
     });
 
     const jsonResponse = await response.json();
+    console.log("server response", jsonResponse);
 
     if (!jsonResponse.success) {
       signupFormRef.current?.setErrors(jsonResponse.errors);

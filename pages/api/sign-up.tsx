@@ -16,8 +16,6 @@ type Data = {
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password } = req.body as Record<string, string>;
 
-  console.log("POST /sign-up", { email, password }, req.body);
-
   if (email === "terrnit@gmail.com") {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     res.status(200).json({

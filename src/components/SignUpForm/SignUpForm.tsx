@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupSchema } from "@/src/schemas";
 import { KeyValues, SignUpApi, SignUpFormValues } from "./type";
 import { forwardRef, useImperativeHandle, useRef } from "react";
+import { Button } from "react-daisyui";
 
 interface SignUpFormProps {
   onSubmitReady: (data: SignUpFormValues) => Promise<void>;
@@ -67,9 +68,9 @@ export const SignUpForm = forwardRef<SignUpApi, SignUpFormProps>(
           error={errors.confirmPassword?.message as string}
         />
 
-        <button className="ring-1 ring-zinc-500 rounded-lg px-4 py-2">
-          Submit
-        </button>
+        <Button color="ghost" variant="outline" disabled={isSubmitting}>
+          {isSubmitting ? "Sending" : "Submit"}
+        </Button>
       </form>
     );
   }
