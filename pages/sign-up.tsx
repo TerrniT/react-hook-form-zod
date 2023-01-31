@@ -4,7 +4,19 @@ import { SignUpFormValues } from "@/src/components/SignUpForm/type";
 
 export default function SignUpPage() {
   const handleSubmit = async (data: SignUpFormValues) => {
-    console.log("Handle submit ready data", data);
+    const response = await fetch("/api/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    });
+
+    const jsonResponse = await response.json();
+    console.log("server response", jsonResponse);
   };
 
   console.log("re-render signup");

@@ -9,20 +9,17 @@ type Error = {
 
 type Data = {
   success: boolean;
-  errors?: Error;
+  errors?: unknown;
 };
 
 //eslint-ignore
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password } = req.body as Record<string, string>;
 
-  console.log("POST /sign-up", req.body, { email, password });
+  console.log("POST /sign-up", { email, password }, req.body);
 
   if (email === "terrnit@gmail.com") {
-    await new Promise((resolver) => setTimeout(resolve, 1000));
-
-    //todo
-
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     res.status(200).json({
       success: false,
       errors: {
@@ -31,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     });
   }
 
-  await new Promise((resolver) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   res.status(200).json({
     success: true,
   });
